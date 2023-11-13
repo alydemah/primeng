@@ -833,7 +833,7 @@ export class ContextMenu implements OnInit, AfterContentInit, OnDestroy {
     onEscapeKey(event: KeyboardEvent) {
         this.hide();
         const processedItem = this.findVisibleItem(this.findFirstFocusedItemIndex());
-        this.focusedItemInfo.mutate((value) => {
+        this.focusedItemInfo.update((value) => {
             value.index = this.findFirstFocusedItemIndex();
             value.item = processedItem.item;
         });
@@ -863,7 +863,7 @@ export class ContextMenu implements OnInit, AfterContentInit, OnDestroy {
             const grouped = this.isProccessedItemGroup(processedItem);
 
             if (!grouped) {
-                this.focusedItemInfo.mutate((value) => {
+                this.focusedItemInfo.update((value) => {
                     value.index = this.findFirstFocusedItemIndex();
                 });
             }
@@ -1086,7 +1086,7 @@ export class ContextMenu implements OnInit, AfterContentInit, OnDestroy {
     changeFocusedItemIndex(event: any, index: number) {
         const processedItem = this.findVisibleItem(index);
         if (this.focusedItemInfo().index !== index) {
-            this.focusedItemInfo.mutate((value) => {
+            this.focusedItemInfo.update((value) => {
                 value.index = index;
                 value.item = processedItem.item;
             });
